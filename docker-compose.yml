@@ -56,3 +56,13 @@ services:
       - LETSENCRYPT_HOST=ovh.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
   
+  fmb:
+    container_name: fmb
+    image: khanhkhuu/fmb
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=fmb.horiz.cloud
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=fmb.horiz.cloud
+      - LETSENCRYPT_EMAIL=admin@horiz.cloud
+    
