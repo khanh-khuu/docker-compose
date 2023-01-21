@@ -1,0 +1,58 @@
+version: '2'
+services:
+
+  ouroboros:
+    container_name: ouroboros
+    hostname: ouroboros
+    image: pyouroboros/ouroboros
+    environment:
+      - CLEANUP=true
+      - INTERVAL=30
+      - LOG_LEVEL=info
+      - SELF_UPDATE=true
+      - IGNORE=mongo influxdb postgres mariadb
+      - TZ=Asia/Ho_Chi_Minh
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  nginx-proxy:
+    container_name: nginx-proxy
+    privileged: true
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ~/nginx/vhost.d:/etc/nginx/vhost.d
+      - ~/nginx-certs:/etc/nginx/certs:ro
+      - ~/nginx-conf:/etc/nginx/conf.d
+      - ~/nginx-logs:/var/log/nginx
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      - ENABLE_IPV6=true
+    restart: unless-stopped
+  
+  letsencrypt:
+    container_name: letsencrypt-nginx-proxy-companion
+    privileged: true,
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: unless-stopped
+    volumes:
+      - ~/nginx/vhost.d:/etc/nginx/vhost.d
+      - ~/nginx-certs:/etc/nginx/certs:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    volumes_from: nginx-proxy
+
+  simple-web:
+    container_name: simple-web
+    image: yeasy/simple-web
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST="ovh.horiz.cloud"
+      - VIRTUAL_PORT=80
+      - LETSENCRYPT_HOST="ovh.horiz.cloud"
+      - LETSENCRYPT_EMAIL="admin@horiz.cloud"
+  
