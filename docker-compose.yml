@@ -37,7 +37,7 @@ services:
   
   letsencrypt:
     container_name: letsencrypt-nginx-proxy-companion
-    privileged: true,
+    privileged: true
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: unless-stopped
     volumes:
