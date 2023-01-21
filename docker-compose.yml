@@ -51,8 +51,8 @@ services:
     image: yeasy/simple-web
     restart: unless-stopped
     environment:
-      - VIRTUAL_HOST="ovh.horiz.cloud"
+      - VIRTUAL_HOST=ovh.horiz.cloud
       - VIRTUAL_PORT=80
-      - LETSENCRYPT_HOST="ovh.horiz.cloud"
-      - LETSENCRYPT_EMAIL="admin@horiz.cloud"
+      - LETSENCRYPT_HOST=ovh.horiz.cloud
+      - LETSENCRYPT_EMAIL=admin@horiz.cloud
   
