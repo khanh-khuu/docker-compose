@@ -66,6 +66,16 @@ services:
       - LETSENCRYPT_HOST=fmb.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
 
+  hgb:
+    container_name: hgb
+    image: khanhkhuu/hgb
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=hgb.horiz.cloud
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=hgb.horiz.cloud
+      - LETSENCRYPT_EMAIL=admin@horiz.cloud
+
   bin-stats:
     container_name: bin-stats
     image: khanhkhuu/bin-stats
