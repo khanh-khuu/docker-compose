@@ -15,6 +15,7 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - $HOME/.docker/config.json:/root/.docker/config.json
 
   nginx-proxy:
     container_name: nginx-proxy
