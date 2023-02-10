@@ -68,7 +68,7 @@ services:
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
     volumes:
       - type: bind
-        source: ${PWD}/db.json
+        source: /home/ubuntu/db.json
         target: /dist/db.json
 
   bin-stats:
