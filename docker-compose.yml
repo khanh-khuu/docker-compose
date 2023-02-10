@@ -56,14 +56,6 @@ services:
       - VIRTUAL_PORT=80
       - LETSENCRYPT_HOST=ovh.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
-  cache:
-    image: redis:6.2-alpine
-    restart: always
-    ports:
-      - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass 062214288
-    volumes: 
-      - cache:/data
   
   hgb:
     container_name: hgb
@@ -74,6 +66,10 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=hgb.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
+    volumes:
+      - type: bind
+        source: ${PWD}/db.json
+        target: ./db.json
 
   bin-stats:
     container_name: bin-stats
