@@ -69,7 +69,7 @@ services:
     volumes:
       - type: bind
         source: ${PWD}/db.json
-        target: /db.json
+        target: /dist/db.json
 
   bin-stats:
     container_name: bin-stats
