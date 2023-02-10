@@ -85,5 +85,6 @@ services:
       - LETSENCRYPT_HOST=binstats.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
     
-cache:
+volumes:
+  cache:
     driver: local
