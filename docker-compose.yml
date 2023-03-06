@@ -71,16 +71,6 @@ services:
         source: /home/ubuntu/db.json
         target: /dist/db.json
 
-  bin-stats:
-    container_name: bin-stats
-    image: khanhkhuu/bin-stats
-    restart: unless-stopped
-    environment:
-      - VIRTUAL_HOST=binstats.horiz.cloud
-      - VIRTUAL_PORT=3000
-      - LETSENCRYPT_HOST=binstats.horiz.cloud
-      - LETSENCRYPT_EMAIL=admin@horiz.cloud
-  
   grafana:
     container_name: my-grafana-container
     image: grafana/grafana
@@ -90,8 +80,6 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=grafana.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
-    volumes:
-      - /var/lib/grafana:/var/lib/grafana
 
 volumes:
   cache:
