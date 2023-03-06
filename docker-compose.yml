@@ -80,6 +80,8 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=grafana.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
+    volumes:
+      - /home/ubuntu/grafana:/var/lib/grafana
 
 volumes:
   cache:
