@@ -80,7 +80,21 @@ services:
       - VIRTUAL_PORT=3000
       - LETSENCRYPT_HOST=binstats.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
-    
+  
+  grafana:
+    container_name: my-grafana-container
+    image: grafana/grafana
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=grafana.horiz.cloud
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=grafana.horiz.cloud
+      - LETSENCRYPT_EMAIL=admin@horiz.cloud
+    volumes:
+      - type: bind
+        source: /var/lib/grafana
+        target: /var/lib/grafana
+
 volumes:
   cache:
     driver: local
