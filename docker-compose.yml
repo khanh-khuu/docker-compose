@@ -74,6 +74,7 @@ services:
   grafana:
     container_name: my-grafana-container
     image: grafana/grafana
+    user: "1000"
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=grafana.horiz.cloud
