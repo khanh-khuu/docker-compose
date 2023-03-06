@@ -91,9 +91,7 @@ services:
       - LETSENCRYPT_HOST=grafana.horiz.cloud
       - LETSENCRYPT_EMAIL=admin@horiz.cloud
     volumes:
-      - type: bind
-        source: /var/lib/grafana
-        target: /var/lib/grafana
+      - /var/lib/grafana:/var/lib/grafana
 
 volumes:
   cache:
