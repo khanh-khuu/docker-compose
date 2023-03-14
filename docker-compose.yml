@@ -70,6 +70,15 @@ services:
       - type: bind
         source: /home/ubuntu/db.json
         target: /dist/db.json
+  doji:
+    container_name: doji
+    image: khanhkhuu/doji
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=doji.horiz.cloud
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_HOST=doji.horiz.cloud
+      - LETSENCRYPT_EMAIL=admin@horiz.cloud
 
   grafana:
     container_name: my-grafana-container
